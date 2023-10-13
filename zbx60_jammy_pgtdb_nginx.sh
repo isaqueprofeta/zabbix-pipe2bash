@@ -186,7 +186,7 @@ echo "####################################################"
 echo "TIMESCALEDB - Instalando pacotes"
 echo "####################################################"
 sudo apt-get -q update
-sudo apt-get -q install -y timescaledb-2-postgresql-15
+sudo apt-get -q install -y timescaledb-2-postgresql-15='2.10.3~ubuntu22.04' timescaledb-2-loader-postgresql-15='2.10.3~ubuntu22.04'
 
 echo "####################################################"
 echo "TIMESCALEDB - Parando Zabbix Server"

@@ -188,7 +188,7 @@ EOL
 echo "####################################################"
 echo "TIMESCALEDB - Instalando pacotes"
 echo "####################################################"
-dnf -y install timescaledb-2-postgresql-15
+dnf -y install timescaledb-2-postgresql-15-2.10.3-0.el8 timescaledb-2-loader-postgresql-15-2.10.3-0.el8.x86_64
 
 echo "####################################################"
 echo "TIMESCALEDB - Parando Zabbix Server"
