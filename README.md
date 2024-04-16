@@ -25,3 +25,9 @@ curl -sSL https://raw.githubusercontent.com/isaqueprofeta/zabbix-pipe2bash/main/
 ```sh
 curl -sSL https://raw.githubusercontent.com/isaqueprofeta/zabbix-pipe2bash/main/zbx60_jammy_pgtdb_nginx.sh | bash -s M1nh4S3NH4D0BancoD3D4d05
 ```
+
+- Debian 12 (Zabbix 6.4 com PostgreSQL 16 nessa instalação):
+
+```sh
+apt update; apt install -y curl; curl -sSL https://raw.githubusercontent.com/isaqueprofeta/zabbix-pipe2bash/main/zbx64_bookworm_pgtdb_nginx.sh | bash -s Z4bb1xD4t4b4s3
+```
