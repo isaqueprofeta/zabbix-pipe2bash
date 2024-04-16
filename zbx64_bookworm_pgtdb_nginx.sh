@@ -32,19 +32,19 @@ echo "########################################################"
 echo "BANCO DE DADOS - Instalando Pacotes"
 echo "########################################################"
 sudo apt-get -q update
-sudo apt-get -q -y install postgresql-16
+sudo apt-get -q -y install postgresql-15
 
 echo "########################################################"
 echo "BANCO DE DADOS - Inicializando serviço"
 echo "########################################################"
-sudo systemctl enable --now postgresql@16-main
+sudo systemctl enable --now postgresql@15-main
 
 echo "########################################################"
 echo "BANCO DE DADOS - Configurações gerais"
 echo "########################################################"
-sudo sed -i "s/ident/md5/g" /etc/postgresql/16/main/pg_hba.conf
-sudo sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" /etc/postgresql/16/main/postgresql.conf
-sudo systemctl restart postgresql@16-main
+sudo sed -i "s/ident/md5/g" /etc/postgresql/15/main/pg_hba.conf
+sudo sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/" /etc/postgresql/15/main/postgresql.conf
+sudo systemctl restart postgresql@15-main
 
 echo "########################################################"
 echo "BANCO DE DADOS - Criação de usuário do Zabbix"
@@ -130,7 +130,7 @@ echo "##########################################################################
 echo "ZABBIX FRONTEND - Configurando suporte ao português brasileiro e outras linguas"
 echo "###############################################################################"
 sudo systemctl stop zabbix-server
-sudo systemctl stop postgresql@16-main
+sudo systemctl stop postgresql@15-main
 
 mkdir -p /var/lib/locales/supported.d/
 rm -f /var/lib/locales/supported.d/local
@@ -151,7 +151,7 @@ sudo ln -s /etc/zabbix/nginx.conf /etc/nginx/sites-enabled/default
 echo "#######################################"
 echo "ZABBIX FRONTEND - Inicializando Serviço"
 echo "#######################################"
-sudo systemctl start postgresql@16-main
+sudo systemctl start postgresql@15-main
 sleep 5
 sudo systemctl start zabbix-server
 sleep 5
@@ -194,7 +194,7 @@ echo "####################################################"
 echo "TIMESCALEDB - Instalando pacotes"
 echo "####################################################"
 sudo apt-get -q update
-sudo apt-get -q -y install timescaledb-2-postgresql-16='2.14.2~debian12' timescaledb-2-loader-postgresql-16='2.14.2~debian12'
+sudo apt-get -q -y install timescaledb-2-postgresql-15='2.14.2~debian12' timescaledb-2-loader-postgresql-15='2.14.2~debian12'
 
 echo "####################################################"
 echo "TIMESCALEDB - Parando Zabbix Server"
@@ -204,14 +204,14 @@ systemctl stop zabbix-server
 echo "####################################################"
 echo "TIMESCALEDB - Configurações do postgresql"
 echo "####################################################"
-echo "shared_preload_libraries = 'timescaledb'" >> /etc/postgresql/16/main/postgresql.conf
-sudo sed -i "s/max_connections = 20/max_connections = 50/" /etc/postgresql/16/main/postgresql.conf
-echo "timescaledb.license=timescale" >> /etc/postgresql/16/main/postgresql.conf
+echo "shared_preload_libraries = 'timescaledb'" >> /etc/postgresql/15/main/postgresql.conf
+sudo sed -i "s/max_connections = 20/max_connections = 50/" /etc/postgresql/15/main/postgresql.conf
+echo "timescaledb.license=timescale" >> /etc/postgresql/15/main/postgresql.conf
 
 echo "#####################################################"
 echo "TIMESCALEDB - Inicializando e configurando postgresql"
 echo "#####################################################"
-sudo systemctl restart postgresql@16-main
+sudo systemctl restart postgresql@15-main
 sudo -u postgres timescaledb-tune --quiet --yes
 echo "CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;" | sudo -u postgres psql zabbix 2>/dev/null
 

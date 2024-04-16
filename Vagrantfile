@@ -47,7 +47,7 @@ Vagrant.configure("2") do |config|
     SHELL
   end
 
-  # Zabbix 6.4 Debian 11
+  # Zabbix 6.4 Debian 12
   config.vm.define "bookworm" do |bookworm|
     bookworm.vm.box = "debian/bookworm64"
     bookworm.vm.hostname = "zabbix64-debian"
