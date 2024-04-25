@@ -198,7 +198,7 @@ systemctl stop zabbix-server
 echo "####################################################"
 echo "TIMESCALEDB - Configurações do postgresql"
 echo "####################################################"
-echo "shared_preload_libraries = 'timescaledb'" > /var/lib/pgsql/15/data/postgresql.conf
+echo "shared_preload_libraries = 'timescaledb'" >> /var/lib/pgsql/15/data/postgresql.conf
 sudo sed -i "s/max_connections = 20/max_connections = 50/" /var/lib/pgsql/15/data/postgresql.conf
 echo "timescaledb.license=timescale" >> /var/lib/pgsql/15/data/postgresql.conf
 
